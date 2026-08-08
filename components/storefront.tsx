@@ -115,7 +115,7 @@ export default function Storefront() {
               <span> made for home.</span>
             </h1>
             <p className="heroLead">
-              Café-inspired beverage blends, pistachio kunafa chocolate and a beautifully curated gift experience—crafted in Canada for customers across the United States.
+              Café-inspired beverage blends, pistachio kunafa chocolate and a beautifully curated gift experience—made in Canada and available to customers across the United States.
             </p>
             <div className="heroButtons">
               <a className="primaryButton" href="#collection">
@@ -128,27 +128,38 @@ export default function Storefront() {
           </motion.div>
         </div>
 
-        <motion.div className="heroStage" style={{ y: heroY, scale: heroScale }}>
-          <motion.div
-            className="heroProduct heroTurmeric"
-            initial={{ opacity: 0, y: 55, rotate: -8 }}
-            animate={{ opacity: 1, y: 0, rotate: -4 }}
-            transition={{ duration: 1.05, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <Image src="/images/turmeric-label.png" alt="Golden Turmeric Latte Mix" fill priority sizes="42vw" />
-          </motion.div>
-          <motion.div
-            className="heroProduct heroMatcha"
-            initial={{ opacity: 0, y: 70, rotate: 7 }}
-            animate={{ opacity: 1, y: 0, rotate: 3 }}
-            transition={{ duration: 1.1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <Image src="/images/matcha-label.png" alt="Matcha Latte Mix" fill priority sizes="35vw" />
-          </motion.div>
-          <div className="brandPebbles" aria-hidden="true">
-            <i /><i /><i /><i /><i />
-          </div>
-        </motion.div>
+    <motion.div
+  className="heroStage cinematicStage"
+  style={{ y: heroY, scale: heroScale }}
+>
+  <div className="heroSpotlight" aria-hidden="true" />
+  <div className="heroGround heroGroundOne" aria-hidden="true" />
+  <div className="heroGround heroGroundTwo" aria-hidden="true" />
+
+  <motion.div
+    className="heroProduct heroCollection"
+    initial={{ opacity: 0, y: 55, scale: 0.92, rotate: -2 }}
+    animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
+    transition={{
+      duration: 1.05,
+      delay: 0.2,
+      ease: [0.16, 1, 0.3, 1],
+    }}
+  >
+    <Image
+      className="floatingProductImage"
+      src="/images/herot.png"
+      alt="Flavour Bites Matcha and Golden Turmeric Latte Mix collection"
+      fill
+      priority
+      sizes="48vw"
+      style={{
+        objectFit: "contain",
+        objectPosition: "center",
+      }}
+    />
+  </motion.div>
+</motion.div>
 
         <div className="heroProof">
           <span><Check size={15} /> Premium presentation</span>
@@ -184,7 +195,7 @@ export default function Storefront() {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.65, delay: index * 0.08 }}
             >
-              <button className="productVisual" onClick={() => setSelected(product)} aria-label={`View ${product.name}`}>
+              <button className="productVisual editorialProductVisual" onClick={() => setSelected(product)} aria-label={`View ${product.name}`}>
                 <Image src={product.image} alt={`${product.name} ${product.subtitle}`} fill sizes="(max-width: 760px) 100vw, 50vw" />
                 <span className="viewHint">View details <ArrowRight size={15} /></span>
               </button>
@@ -203,21 +214,69 @@ export default function Storefront() {
         </div>
       </section>
 
-      <section className="craft" id="craft">
-        <div className="craftImage">
-          <Image src="/images/turmeric-label.png" alt="Flavour Bites premium packaging details" fill sizes="55vw" />
+      <section className="productStory storyTurmeric" id="craft">
+        <div className="storyVisual">
+          <div className="storyGlow" aria-hidden="true" />
+          <Image src="/images/turmeric-label.png" alt="Flavour Bites Golden Turmeric Latte Mix" fill sizes="55vw" />
         </div>
-        <div className="craftCopy">
-          <p className="overline">Premium by design</p>
-          <h2>Hospitality you can see before the first sip.</h2>
+        <div className="storyCopy">
+          <p className="overline">Golden Turmeric Latte Mix</p>
+          <h2>Golden warmth,<br />made your way.</h2>
           <p>
-            Rich cream, deep forest green and warm gold create a visual language inspired by celebration, generosity and café ritual. The five joyful colours of our logo remain the signature that makes every product unmistakably Flavour Bites.
+            Flavour Bites Golden Turmeric Latte Mix combines turmeric, ginger, cinnamon, cardamom, saffron, black pepper and sea salt in a premium beverage blend with no added sugar. Prepare it with your preferred milk and sweeten to taste.
           </p>
           <ul>
-            <li><Sparkles size={19} /> Refined, cohesive presentation</li>
-            <li><Leaf size={19} /> Thoughtful beverage blends</li>
-            <li><Gift size={19} /> Designed for sharing and gifting</li>
+            <li><Sparkles size={19} /> No added sugar</li>
+            <li><Leaf size={19} /> Made in Canada</li>
+            <li><Gift size={19} /> Enjoy with dairy or plant-based milk</li>
           </ul>
+          <button className="storyAction" onClick={() => addToCart(products[0])}>
+            Add to bag <ShoppingBag size={17} />
+          </button>
+        </div>
+      </section>
+
+      <section className="productStory storyMatcha">
+        <div className="storyCopy">
+          <p className="overline">Matcha Latte Mix</p>
+          <h2>Calm energy.<br />Café-style richness.</h2>
+          <p>
+            Premium matcha is blended with a smooth non-dairy creamer, natural vanilla flavour and sea salt to create a balanced latte with no added sugar. Enjoy it warm, pour it over ice or sweeten it exactly the way you like.
+          </p>
+          <ul>
+            <li><Leaf size={19} /> Premium matcha</li>
+            <li><Sparkles size={19} /> Rich and creamy</li>
+            <li><Gift size={19} /> Warm or iced</li>
+          </ul>
+          <button className="storyAction" onClick={() => addToCart(products[1])}>
+            Add to bag <ShoppingBag size={17} />
+          </button>
+        </div>
+        <div className="storyVisual">
+          <div className="storyGlow" aria-hidden="true" />
+          <Image src="/images/matcha-label.png" alt="Flavour Bites Matcha Latte Mix" fill sizes="55vw" />
+        </div>
+      </section>
+
+      <section className="productStory storyChocolate">
+        <div className="storyVisual">
+          <div className="storyGlow" aria-hidden="true" />
+          <Image src="/images/chocolate-packaging.png" alt="Flavour Bites Dubai Pistachio Kunafa Chocolate" fill sizes="55vw" />
+        </div>
+        <div className="storyCopy">
+          <p className="overline">Dubai Pistachio Kunafa Chocolate</p>
+          <h2>A modern classic,<br />layered with indulgence.</h2>
+          <p>
+            Smooth chocolate surrounds a crisp pistachio-kunafa inspired centre for a rich contrast of flavour and texture. It is made in Canada and presented as a premium treat for gifting, sharing or enjoying one square at a time.
+          </p>
+          <ul>
+            <li><Sparkles size={19} /> Pistachio-kunafa inspired centre</li>
+            <li><Leaf size={19} /> Made in Canada</li>
+            <li><Gift size={19} /> Gift-ready presentation</li>
+          </ul>
+          <button className="storyAction" onClick={() => addToCart(products[2])}>
+            Add to bag <ShoppingBag size={17} />
+          </button>
         </div>
       </section>
 
@@ -233,6 +292,7 @@ export default function Storefront() {
           </button>
         </div>
         <div className="giftVisual">
+          <div className="giftSpotlight" aria-hidden="true" />
           <Image src="/images/gift-box-design.png" alt="Flavour Bites Dessert Experience Box" fill sizes="55vw" />
         </div>
       </section>
@@ -241,7 +301,7 @@ export default function Storefront() {
         <p className="overline">A clear path to your door</p>
         <h2>Made in Canada.<br />Available across the United States.</h2>
         <div className="fulfillmentSteps">
-          <article><b>01</b><h3>Crafted in Canada</h3><p>Our initial collection is prepared and packaged under the Flavour Bites brand in Canada.</p></article>
+          <article><b>01</b><h3>Made in Canada</h3><p>Our initial collection is made and packaged under the Flavour Bites brand in Canada.</p></article>
           <article><b>02</b><h3>Offered in U.S. dollars</h3><p>Customers browse a focused U.S. collection with product details and a genuine purchase path.</p></article>
           <article><b>03</b><h3>Fulfilled from Los Angeles</h3><p>U.S. orders are handled through our authorized fulfillment arrangement in Los Angeles, California.</p></article>
         </div>
